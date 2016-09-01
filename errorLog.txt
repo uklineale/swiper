@@ -1,0 +1,1 @@
+MongoError: Collection workers does not exist. Currently in strict mode.MongoError: Collection workers does not exist. Currently in strict mode.MongoError: Collection workers does not exist. Currently in strict mode.MongoError: Collection workers does not exist. Currently in strict mode.
