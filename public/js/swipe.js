@@ -1,10 +1,11 @@
-//var Swing = require('./swing');
+var Swing = require('swing');
 
-// Prepare the cards in the stack for iteration.
+console.log('Starting js');
+// Prepare the cards in the stack for iteration
 const cards = [].slice.call(document.querySelectorAll('ul li'));
 
 // An instance of the Stack is used to attach event listeners.
-const stack = Stack();
+const stack = Swing.Stack();
 
 cards.forEach((targetElement) => {
     // Add card element to the Stack.
