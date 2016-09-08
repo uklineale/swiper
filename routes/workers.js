@@ -17,25 +17,13 @@ db.open(function(err, db) {
         console.log("Connected to 'workerdb' database");
         db.collection('workers', {strict:true}, function(err1, collection) {
             if (err1) {
-                try {
-                    fs.appendFileSync("./errorLog.txt", err1);
-                }
-                catch (err2) {
-                    console.error(err2);
-                }
-                console.log("The 'workers' collection doesn't exist. Rebuilding collection...");
+                console.log("The 'workers' collection doesn't exist. Rebuilding collection...\n");
                 populateWorkers();
             }
         });
     }
     else {
-        try {            
-            fs.appendFileSync("./errorLog.txt", err);
-        }
-        catch (openingConnectionErr){
-            console.error(openingConnectionErr); 
-        }
-        
+        console.log(err);
     }
 });
 
@@ -59,8 +47,10 @@ exports.findById = function(req, res) {
     var id = req.params.id;
     console.log('Finding by Id: ' + id);
     db.collection('workers', function(err, collection){
-        collection.findOne(ObjectId(id), function(err, item){
+        collection.findOne({'_id':new ObjectId(id)}, function(err, item){
+          if (!err){
             res.send(item);
+          }
         });
     });
 };
@@ -81,13 +71,14 @@ exports.addWorker = function(req, res) {
 }
 
 //Doesn't do logging yet
+//Fuck logging
 exports.updateWorker = function(req, res) {
     var id = req.params.id;
     var worker = req.body;
     console.log('Updating worker: ' + id);
     console.log(JSON.stringify(worker));
     db.collection('workers', function(err, collection) {
-        collection.update(ObjectId(id), worker, {safe:true}, 
+        collection.update( {'_id': new ObjectId(id)}, worker, {safe:true},
         function(err, result) {
             if (err) {
                 console.log('Error updating workers: ' + err);
@@ -105,15 +96,10 @@ exports.deleteWorker = function(req, res) {
     var id = req.params.id;
     console.log('Deleting worker: ' + id);
     db.collection('workers', function(err, collection){
-        collection.remove(ObjectId(id),
+        collection.remove({'_id': new ObjectId(id)},
         function(err, result){
             if (err) {
-                try{
-                    fs.appendFileSync('./errorLog.txt', err);
-                }
-                catch (err1) {
-                    console.err(err1);
-                }
+                console.log(err);
             } else {
                 console.log('' + result + ' document(s) deleted');
                 res.send(req.body);
