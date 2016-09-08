@@ -35,14 +35,21 @@ input {
     width: 200px; height: 300px; list-style: none; background: #fff; border-radius: 5px; position: absolute; top: 0; left: 0; box-shadow: 0 0 2px rgba(0,0,0,.2), 1px 1px 1px rgba(0,0,0,.2); line-height: 300px; text-align: center; font-size: 100px; border: 10px solid #ECECEC; box-sizing: border-box; cursor: default;
 }
 
-#viewport li.clubs,
-#viewport li.spades {
-    color: #373737;
+#viewport li.worker{
+    background-image: url("http://america.pink/images/1/0/7/2/9/3/7/en/2-construction-worker.jpg");
+    background-size: 100% 100%;
+    color: white;
+    font-size: 36px;
+    font-weight: bolder;
+    cursor:pointer;
 }
 
-#viewport li.diamonds,
-#viewport li.hearts {
-    color: #ED5D52;
+#viewport li.good{
+  background-image: url("http://www.clipartkid.com/images/212/happy-construction-worker-stock-images-image-16025354-q2t6Lu-clipart.jpg");
+}
+
+#viewport li.bad{
+  background-image: url("http://thumb1.shutterstock.com/display_pic_with_logo/2929981/336156128/stock-photo-sad-male-construction-worker-with-short-black-hair-in-uniform-begging-isolated-336156128.jpg");
 }
 
 #viewport li.in-deck:nth-child(3) {
